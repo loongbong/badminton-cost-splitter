@@ -80,8 +80,6 @@ button:active, .stepper-btn:active { transform: scale(0.98); }
 /* Hidden Textarea */
 #copy-buffer { position: absolute; left: -9999px; top: 0; opacity: 0; height: 1px; width: 1px;}
 
-/* QR Code Section Styling REMOVED */
-
 /* Footer Styling */
 .app-footer { text-align: center; margin-top: 40px; padding: 20px 15px; border-top: 1px solid #e8f5e9; font-size: 0.9rem; color: #7cb342; position: relative; z-index: 1; }
 
@@ -91,15 +89,40 @@ button:active, .stepper-btn:active { transform: scale(0.98); }
     .calculator-container { padding: 20px 15px; margin: 15px auto; }
     h1 { font-size: 1.5rem; }
     p { font-size: 0.9rem; margin-bottom: 20px;}
-    #cost-form { gap: 12px; }
-    .input-group { flex-direction: column; align-items: stretch; gap: 5px; }
-    .input-group label { text-align: left; margin-bottom: 3px; flex-basis: auto; padding-right: 0; flex-shrink: 1;}
-    .input-with-stepper { width: 100%; justify-content: flex-start; }
-    .input-with-stepper input { flex-grow: 1; width: auto; min-width: 40px; }
-    .toggle-section label { font-size: 0.95rem; }
+    #cost-form { gap: 15px; } /* Slightly more gap when stacked */
+
+    /* --- UPDATED Mobile Input Group Styles --- */
+    .input-group {
+        flex-direction: column; /* Keep stacking */
+        align-items: stretch;  /* Stretch items full width */
+        gap: 5px;
+    }
+    .input-group label {
+        text-align: left;   /* Align label text left */
+        margin-bottom: 3px;
+        flex-basis: auto;   /* Reset basis */
+        padding-right: 0;
+        flex-shrink: 1;
+        /* Center label text if preferred: */
+        /* text-align: center; */
+        /* margin-left: auto; */
+        /* margin-right: auto; */
+    }
+    .input-with-stepper {
+        width: 100%;
+        justify-content: center; /* Center the [-] [Input] [+] combo */
+    }
+    .input-with-stepper input[type="number"] {
+        flex-grow: 0; /* *** REMOVE flex-grow *** */
+        width: 50px;  /* Keep fixed width */
+        min-width: 50px; /* Keep fixed width */
+        /* The width: auto; and flex-grow: 1 from previous mobile styles were the issue */
+    }
+    /* --- End of UPDATED Mobile Input Group Styles --- */
+
+    .toggle-section label { font-size: 0.95rem; text-align: left;} /* Ensure toggle labels stay left */
     .defaults-section { justify-content: center; }
     .defaults-message { width: 100%; text-align: center; margin-top: 5px; margin-left: 0;}
-    /* Removed responsive QR styles */
     .results-section { padding: 15px; }
     #cost-breakdown p { font-size: 0.9rem;}
     .final-result { font-size: 1rem; }
