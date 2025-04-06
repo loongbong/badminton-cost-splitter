@@ -1,0 +1,108 @@
+/* Basic Reset & Font */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6; color: #34495e; padding: 20px;
+    background: linear-gradient(135deg, #edf7ee 0%, #f1f8f1 100%);
+    min-height: 100vh;
+}
+
+/* Calculator Container */
+.calculator-container { max-width: 580px; margin: 30px auto; padding: 30px 35px; background-color: rgba(255, 255, 255, 0.95); border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 91, 115, 0.08); border: 1px solid #e0e0e0; position: relative; z-index: 1; }
+
+/* Headings and Text */
+h1 { text-align: center; color: #2e7d32; margin-bottom: 12px; font-size: 1.8rem; font-weight: 600; }
+p { text-align: center; margin-bottom: 25px; color: #556b55; font-size: 1rem; }
+
+/* Form Styling */
+#cost-form { display: flex; flex-direction: column; gap: 15px; }
+
+/* Input Groups */
+.input-group { display: flex; align-items: center; gap: 10px; }
+.input-group label { flex-basis: 38%; flex-shrink: 0; text-align: right; font-weight: 400; color: #34495e; font-size: 0.95rem; padding-right: 8px; }
+.input-group input[type="number"] { flex-grow: 1; flex-shrink: 1; padding: 9px 12px; border: 1px solid #c8e6c9; border-radius: 6px; font-size: 1rem; font-family: 'Poppins', sans-serif; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; min-width: 60px; color: #2c3e50; background-color: #ffffff; }
+.input-group input[type="number"]:focus { border-color: #4caf50; box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15); outline: none; }
+
+/* Input with Stepper Buttons */
+.input-with-stepper { display: flex; align-items: center; flex-shrink: 1; flex-grow: 1; justify-content: flex-start; }
+.input-with-stepper input[type="number"] { text-align: center; border: 1px solid #c8e6c9; border-left: none; border-right: none; border-radius: 0; padding: 9px 2px; font-size: 1rem; font-family: 'Poppins', sans-serif; color: #2c3e50; width: 50px; min-width: 50px; flex-grow: 0; flex-shrink: 0; -moz-appearance: textfield; appearance: textfield; background-color: #ffffff; }
+.input-with-stepper input[type="number"]::-webkit-outer-spin-button,
+.input-with-stepper input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.input-with-stepper input[type="number"]:focus { border-color: #4caf50; outline: none; position: relative; z-index: 1; box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15); }
+.stepper-btn { background-color: #f1f8f1; border: 1px solid #c8e6c9; color: #388e3c; cursor: pointer; font-weight: 600; padding: 8px 9px; font-size: 1rem; height: 39px; line-height: 1; transition: background-color 0.2s, color 0.2s; position: relative; flex-shrink: 0; }
+.stepper-btn:hover { background-color: #dcedc8; color: #2e7d32; }
+.stepper-btn.minus { border-radius: 6px 0 0 6px; border-right: 1px solid #c8e6c9; }
+.stepper-btn.plus { border-radius: 0 6px 6px 0; border-left: 1px solid #c8e6c9; }
+
+hr { border: none; border-top: 1px solid #e8f5e9; margin: 15px 0; }
+hr.final-hr { margin-top: 20px; margin-bottom: 20px; }
+
+/* Toggle Checkbox Sections */
+.toggle-section { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.toggle-section label { font-weight: 600; color: #388e3c; font-size: 1rem; text-align: left; flex-basis: auto; flex-shrink: 1; cursor: pointer; }
+.toggle-section input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; accent-color: #388e3c; }
+.hidden-section { display: none; padding-left: 25px; border-left: 3px solid #dcedc8; margin: 10px 0 10px 5px; gap: 12px; flex-direction: column; }
+.hidden-section.visible { display: flex; }
+
+/* Defaults Section */
+.defaults-section { display: flex; gap: 10px; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e8f5e9; flex-wrap: wrap; }
+.defaults-section button { background-color: #7cb342; color: white; padding: 8px 14px; font-size: 0.9rem; font-family: 'Poppins', sans-serif; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; }
+.defaults-section button:hover { background-color: #689f38; }
+.defaults-message { margin-left: 10px; font-size: 0.85rem; color: #556b55; }
+
+/* Calculate Button (Primary Action) */
+#calculate-btn { background-color: #388e3c; color: white; padding: 12px 20px; font-size: 1.05rem; font-family: 'Poppins', sans-serif; font-weight: 600; width: 100%; margin-top: 0; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s, transform 0.1s; }
+#calculate-btn:hover { background-color: #2e7d32; }
+button:active, .stepper-btn:active { transform: scale(0.98); }
+
+/* Results Section */
+.results-section { margin-top: 30px; padding: 20px 25px; background-color: #fafffa; border-radius: 8px; border: 1px solid #dcedc8; }
+.results-section h2 { text-align: center; margin-bottom: 20px; color: #388e3c; font-size: 1.4rem; font-weight: 600; }
+#cost-breakdown p { margin-bottom: 8px; font-size: 1rem; color: #34495e; display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dotted #dcedc8; }
+#cost-breakdown p:last-child { border-bottom: none; }
+#cost-breakdown p span:first-child { margin-right: 10px; color: #556b55; }
+#cost-breakdown p span:last-child { font-weight: 600; text-align: right; }
+#result-attendees { font-weight: 600; }
+#guest-result-line, #other-result-line { display: none; }
+#guest-result-line.visible, #other-result-line.visible { display: flex; }
+.results-section hr { margin: 15px 0; border-top: 1px solid #c8e6c9; }
+
+/* Final Result Styling */
+.final-result { font-size: 1.1rem; margin-top: 12px; display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0;}
+.final-result strong { color: #388e3c; font-weight: 600; margin-right: 10px; flex-shrink: 0; }
+.final-result span { font-weight: 700; color: #2e7d32; font-size: 1.15rem; text-align: right; }
+
+/* Secondary Action Button Styling (Copy Button) */
+.secondary-action-btn { background-color: #1e88e5; color: white; padding: 10px 18px; font-size: 0.95rem; font-family: 'Poppins', sans-serif; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; margin-top: 20px; width: 100%; text-align: center; transition: background-color 0.2s, transform 0.1s; }
+.secondary-action-btn:hover { background-color: #1565c0; }
+
+/* Hidden Textarea */
+#copy-buffer { position: absolute; left: -9999px; top: 0; opacity: 0; height: 1px; width: 1px;}
+
+/* QR Code Section Styling REMOVED */
+
+/* Footer Styling */
+.app-footer { text-align: center; margin-top: 40px; padding: 20px 15px; border-top: 1px solid #e8f5e9; font-size: 0.9rem; color: #7cb342; position: relative; z-index: 1; }
+
+/* Responsive Adjustments */
+@media (max-width: 500px) {
+    body { padding: 10px; }
+    .calculator-container { padding: 20px 15px; margin: 15px auto; }
+    h1 { font-size: 1.5rem; }
+    p { font-size: 0.9rem; margin-bottom: 20px;}
+    #cost-form { gap: 12px; }
+    .input-group { flex-direction: column; align-items: stretch; gap: 5px; }
+    .input-group label { text-align: left; margin-bottom: 3px; flex-basis: auto; padding-right: 0; flex-shrink: 1;}
+    .input-with-stepper { width: 100%; justify-content: flex-start; }
+    .input-with-stepper input { flex-grow: 1; width: auto; min-width: 40px; }
+    .toggle-section label { font-size: 0.95rem; }
+    .defaults-section { justify-content: center; }
+    .defaults-message { width: 100%; text-align: center; margin-top: 5px; margin-left: 0;}
+    /* Removed responsive QR styles */
+    .results-section { padding: 15px; }
+    #cost-breakdown p { font-size: 0.9rem;}
+    .final-result { font-size: 1rem; }
+    .final-result span { font-size: 1.05rem;}
+    .secondary-action-btn { font-size: 0.9rem; padding: 10px 15px;}
+}

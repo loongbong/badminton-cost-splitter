@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton Cost Splitter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏸</text></svg>">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>🏸 Badminton Session Cost Splitter</h1>
+        <p>Enter session details below (using RM):</p>
+
+        <form id="cost-form">
+            <div class="input-group">
+                <label for="attendees">Attendees:</label>
+                 <div class="input-with-stepper"> <button type="button" class="stepper-btn minus" data-target="attendees">-</button> <input type="number" id="attendees" name="attendees" min="1" value="8" step="1" required> <button type="button" class="stepper-btn plus" data-target="attendees">+</button> </div>
+            </div>
+             <div class="input-group">
+                <label for="num-courts">Number of Courts:</label>
+                <div class="input-with-stepper"> <button type="button" class="stepper-btn minus" data-target="num-courts">-</button> <input type="number" id="num-courts" name="num-courts" min="1" value="2" step="1" required> <button type="button" class="stepper-btn plus" data-target="num-courts">+</button> </div>
+            </div>
+            <div class="input-group">
+                <label for="court-hours">Court Hours (per court):</label>
+                 <div class="input-with-stepper"> <button type="button" class="stepper-btn minus" data-target="court-hours" data-step="0.5">-</button> <input type="number" id="court-hours" name="court-hours" min="0" step="0.5" value="2.0" required> <button type="button" class="stepper-btn plus" data-target="court-hours" data-step="0.5">+</button> </div>
+            </div>
+            <div class="input-group">
+                <label for="court-rate">Court Rate/Hour (RM):</label>
+                <input type="number" id="court-rate" name="court-rate" min="0" step="0.01" value="8.50" required>
+            </div>
+            <div class="input-group">
+                <label for="shuttles-used">Shuttles Used:</label>
+                 <div class="input-with-stepper"> <button type="button" class="stepper-btn minus" data-target="shuttles-used">-</button> <input type="number" id="shuttles-used" name="shuttles-used" min="0" value="4" step="1" required> <button type="button" class="stepper-btn plus" data-target="shuttles-used">+</button> </div>
+            </div>
+            <div class="input-group">
+                <label for="shuttle-price">Price/Shuttle (RM):</label>
+                <input type="number" id="shuttle-price" name="shuttle-price" min="0" step="0.01" value="10.00" required>
+            </div>
+            <hr>
+            <div class="toggle-section"> <input type="checkbox" id="toggle-guests" name="toggle-guests"> <label for="toggle-guests">Include Guests?</label> </div>
+            <div id="guest-input-section" class="hidden-section"> <div class="input-group"> <label for="guests">Number of Guests:</label> <div class="input-with-stepper"> <button type="button" class="stepper-btn minus" data-target="guests">-</button> <input type="number" id="guests" name="guests" min="0" value="0" step="1"> <button type="button" class="stepper-btn plus" data-target="guests">+</button> </div> </div> <div class="input-group"> <label for="guest-fee">Guest Fee/Person (RM):</label> <input type="number" id="guest-fee" name="guest-fee" min="0" step="0.01" value="10.00"> </div> </div>
+            <div class="toggle-section"> <input type="checkbox" id="toggle-other-costs" name="toggle-other-costs"> <label for="toggle-other-costs">Include Other Costs?</label> </div>
+            <div id="other-costs-input-section" class="hidden-section"> <div class="input-group"> <label for="other-costs">Other Costs (RM):</label> <input type="number" id="other-costs" name="other-costs" min="0" step="0.01" value="0.00"> </div> </div>
+            <div class="defaults-section"> <button type="button" id="save-defaults-btn">Save Defaults</button> <button type="button" id="load-defaults-btn">Load Defaults</button> <span id="defaults-msg" class="defaults-message"></span> </div>
+            <hr class="final-hr">
+            <button type="button" id="calculate-btn">Calculate Costs</button>
+        </form> <div id="results" class="results-section" style="display: none;">
+            <h2>Results</h2>
+            <div id="cost-breakdown">
+                 <p><span>Attendees:</span> <span id="result-attendees">0</span></p>
+                <p><span>Court Fees:</span> <span id="court-total">RM 0.00</span></p>
+                <p><span>Shuttlecock Fees:</span> <span id="shuttle-total">RM 0.00</span></p>
+                <p id="guest-result-line" style="display: none;"><span>Guest Fees:</span> <span id="guest-total">RM 0.00</span></p>
+                <p id="other-result-line" style="display: none;"><span>Other Costs:</span> <span id="other-total">RM 0.00</span></p>
+            </div>
+            <hr>
+            <p class="final-result"><strong>Total Session Cost:</strong> <span id="total-cost">RM 0.00</span></p>
+            <p class="final-result"><strong>Cost Per Person:</strong> <span id="cost-per-person">RM 0.00</span></p>
+
+            <button type="button" id="copy-results-btn" class="secondary-action-btn">Copy Results Summary</button>
+
+            </div> <textarea id="copy-buffer" aria-hidden="true" style="position: absolute; left: -9999px; top: 0; opacity: 0; height: 1px; width: 1px;"></textarea>
+
+    </div> <footer class="app-footer">
+        Made by Loong Bong
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
